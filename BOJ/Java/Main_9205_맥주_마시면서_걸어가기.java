@@ -1,4 +1,4 @@
-package BOJ.Java;
+package algorithm.BOJ.Java;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,20 +40,20 @@ public class Main_9205_맥주_마시면서_걸어가기 {
         System.out.println(sb);
     }
 
-    static void dfs(int cnt, int idx) { // 이전 위치
-        int dis = Math.abs(map[idx][0] - map[N + 1][0]) + Math.abs(map[idx][1] - map[N + 1][1]);
-        if(dis <= 1000) flag = true;
+    static void dfs(int cnt, int idx) { // 현재 위치
+        int dis = Math.abs(map[idx][0] - map[N + 1][0]) + Math.abs(map[idx][1] - map[N + 1][1]); // 현재 위치에서 페스티벌까지의 맨헤튼 거리
+        if(dis <= 1000) flag = true; // 맨헤튼 거리가 1000(맨헤튼 거리 / 50 <= 20) 이하일 경우 flag true
 
-        if(cnt == N) return;
-        if(flag) return;
+        if(cnt == N) return; // 모든 편의점을 다 고려했으면 return
+        if(flag) return; // 이미 flag가 ture면 return
 
-        for(int i = 0; i < N; i++) {
-            if(visited[i]) continue;
-            dis = Math.abs(map[idx][0] - map[i + 1][0]) + Math.abs(map[idx][1] - map[i + 1][1]);
-            if(dis > 1000) continue;
+        for(int i = 0; i < N; i++) { // 다음 편의점 선택
+            if(visited[i]) continue; // 이미 방문한 편의점이면 continue
+            dis = Math.abs(map[idx][0] - map[i + 1][0]) + Math.abs(map[idx][1] - map[i + 1][1]); // 현재 위치에서 다음 편의점까지의 맨헤튼 거리
+            if(dis > 1000) continue; // 맨헤튼 거리가 1000을 초과할 경우 continue
 
-            visited[i] = true;
-            dfs(cnt + 1, i + 1);
+            visited[i] = true; // 방문 체크
+            dfs(cnt + 1, i + 1); // 해당 편의점을 현재 위치로 설정하여 재귀 함수 호출
         }
 
     }
