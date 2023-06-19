@@ -32,7 +32,7 @@ public class Main_1931_회의실_배정 {
         });
 
         for(int i = 0; i < N; i++) {
-            if(lastTime <= arr[i][0]) {
+            if(lastTime <= arr[i][0]) { // 한 회의가 끝남과 동시에 다음 회의가 시작할 수 있음
                 lastTime = arr[i][1];
                 answer++;
             }
