@@ -73,17 +73,20 @@ public class Main_14442_벽_부수고_이동하기2 {
                     int nr = square.r + dr[i];
                     int nc = square.c + dc[i];
 
-                    if (nr < 0 || nr >= N || nc < 0 || nc >= M || visited[nr][nc] <= square.cnt) continue;
-                    // 방문체크 배열에서 다음 위치 칸에 저장된 횟수가 현재 위치에서 벽을 부순 횟수보다 작거나 같으면
+                    if (nr < 0 || nr >= N || nc < 0 || nc >= M) continue;
+
+                    // 방문체크 배열에서 다음 위치 칸에 저장된 횟수가 현재 위치에서 벽을 부순 횟수(+1)보다 작거나 같으면
                     // 벽을 적거나 같게 부수면서 이미 해당 위치를 방문했다는 뜻이므로 방문할 필요가 없음
                     // -> 3차원 배열을 사용하는 것보다 시간/공간 절약
 
                     if (map[nr][nc] == 1) { // 다음 위치가 벽일 경우
                         if (square.cnt < K) { // 벽을 부순 횟수가 K보다 작을 경우
-                            visited[nr][nc] = square.cnt; // 방문 체크 배열에 현재 벽 부순 횟수
+                             if(visited[nr][nc] <= square.cnt + 1) continue;
+                            visited[nr][nc] = square.cnt + 1; // 방문 체크 배열에 현재 벽 부순 횟수 + 1
                             queue.offer(new Square(nr, nc, square.cnt + 1)); // 벽 부순 횟수 증가
                         }
                     } else { // 벽이 아닐 경우
+                        if(visited[nr][nc] <= square.cnt) continue;
                         visited[nr][nc] = square.cnt; // 방문 체크 배열에 현재 벽 부순 횟수
                         queue.offer(new Square(nr, nc, square.cnt));
                     }
