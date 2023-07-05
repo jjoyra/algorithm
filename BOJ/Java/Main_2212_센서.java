@@ -3,10 +3,7 @@ package algorithm.BOJ.Java;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main_2212_센서 {
     public static void main(String[] args) throws IOException {
@@ -23,17 +20,25 @@ public class Main_2212_센서 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
+        // 좌표값 오름차순으로 정렬
         Arrays.sort(arr);
 
-        int[] arr2 = new int[N - 1];
+        // 인접한 좌표끼리의 거리 계산
+        Integer[] arr2 = new Integer[N - 1];
 
         for(int i = 0; i < N - 1 ; i++) {
             arr2[i] = arr[i + 1] - arr[i];
         }
 
-        int answer = 1;
+        // 좌표 간의 거리를 내림차순으로 정렬
+        Arrays.sort(arr2, Collections.reverseOrder());
 
-        System.out.println(Arrays.toString(arr2));
+        // 좌표 거리가 가장 긴 K - 1개의 값을 제외한 나머지 값을 더해줌
+        int answer = 0;
+        for(int i = K - 1; i < N - 1; i++) {
+            answer += arr2[i];
+        }
+
         System.out.println(answer);
     }
 }
