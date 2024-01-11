@@ -41,9 +41,8 @@ public class Main_1005_ACM_Craft {
             W = Integer.parseInt(br.readLine());
 
             Queue<Integer> queue = new ArrayDeque<>();
-            boolean flag = false;
 
-            while(!flag) {
+            while(true) {
                 for(int i = 1; i < N; i++){
                     if(inEdge[i] == 0) {
                         queue.offer(i);
@@ -51,22 +50,16 @@ public class Main_1005_ACM_Craft {
                     }
                 }
 
-                int size = queue.size();
+                int node = queue.poll();
+                dp[node] += time[node];
 
-                for(int i = 0; i < size; i++) {
-                    int node = queue.poll();
-                    dp[node] += time[node];
+                if(node == W) {
+                    break;
+                }
 
-                    if(node == W) {
-                        flag = true;
-                        break;
-                    }
-
-                    for(int j = 0; j < list[node].size(); j++) {
-                        inEdge[list[node].get(j)]--;
-                        dp[list[node].get(j)] = Math.max(dp[list[node].get(j)], dp[node]);
-                    }
-
+                for(int j = 0; j < list[node].size(); j++) {
+                    inEdge[list[node].get(j)]--;
+                    dp[list[node].get(j)] = Math.max(dp[list[node].get(j)], dp[node]);
                 }
             }
 
