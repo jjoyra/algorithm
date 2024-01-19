@@ -1,7 +1,7 @@
 package algorithm.programmers.Java;
 
 import java.util.*;
-public class Solution_PCCP_기출_2_석유_시추 {
+public class Solution_PCCP_기출_2번_석유_시추 {
     static int[][] landMap;
     static int[] dr = {-1, 0, 1, 0};
     static int[] dc = {0, 1, 0, -1};
