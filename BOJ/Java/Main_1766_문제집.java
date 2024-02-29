@@ -65,7 +65,9 @@ public class Main_1766_문제집 {
 
             for (int num : list[problem.number]) {
                 in[num]--;
-                pq.offer(new Problem(num, in[num]));
+                if(in[num] == 0) {
+                    pq.offer(new Problem(num, in[num]));
+                }
             }
 
         }
