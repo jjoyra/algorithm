@@ -38,15 +38,6 @@ public class Main_1600_말이_되고픈_원숭이 {
         bfs();
 
         System.out.println(answer);
-
-//        for(int i = 0; i < K + 1; i++) {
-//            for(int j = 0; j < H; j++) {
-//                for(int k = 0; k < W; k++) {
-//                    System.out.print(visited[j][k][i] + " ");
-//                }
-//                System.out.println();
-//            }
-//        }
     }
 
     static void bfs() {
